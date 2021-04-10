@@ -7,7 +7,9 @@ import javax.persistence.Id;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
 
+@Getter
 @Entity
 @ApiModel(description = "Details about the nurse")
 public class Nurse {
@@ -21,38 +23,6 @@ public class Nurse {
 	private int age;
 	@ApiModelProperty(notes = "The nurse's salary")
 	private double salary;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public double getSalary() {
-		return salary;
-	}
-
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
 
 	public void updateNurseData(int nurseId, Nurse nurse) {
 		this.id = nurseId;
