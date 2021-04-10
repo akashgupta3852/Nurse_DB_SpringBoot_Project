@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.util.Collections;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,9 +18,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 public class SpringbootrestdemoApplication {
+	private static Logger logger = LoggerFactory.getLogger(SpringbootrestdemoApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootrestdemoApplication.class, args);
+		logger.info("Message logged at info level");
+		logger.error("Message logged at error level");
+		logger.debug("Message logged at debug level");
+		logger.warn("Message logged at warn level");
+		logger.trace("Message logged at trace level");
 	}
 
 	@Bean
