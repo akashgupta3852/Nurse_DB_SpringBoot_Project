@@ -6,7 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+
+import com.example.demo.model.Nurse;
+import com.example.demo.service.NurseService;
 
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -21,7 +25,17 @@ public class SpringbootrestdemoApplication {
 	private static Logger logger = LoggerFactory.getLogger(SpringbootrestdemoApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootrestdemoApplication.class, args);
+		ApplicationContext applicationContext = SpringApplication.run(SpringbootrestdemoApplication.class, args);
+
+		// It is used to create a nurse's data in the database
+		Nurse nurse = new Nurse();
+		nurse.setId(3);
+		nurse.setAge(31);
+		nurse.setName("Rama");
+		nurse.setSalary(71000);
+		NurseService nurseService = applicationContext.getBean(NurseService.class);
+		nurseService.addNurse(nurse);
+
 		logger.info("Message logged at info level");
 		logger.error("Message logged at error level");
 		logger.debug("Message logged at debug level");
