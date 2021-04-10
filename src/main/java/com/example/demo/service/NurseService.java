@@ -34,7 +34,6 @@ public class NurseService {
 		Nurse nurse = new Nurse();
 		Optional<Nurse> optional = this.getNurseDataById(nurseId);
 		if (optional.isPresent()) {
-			nurseRepository.deleteById(nurseId);
 			nurse.updateNurseData(nurseId, nurseData);
 			nurseRepository.save(nurse);
 			return "Nurse name: " + nurseData.getName() + "'s data has been updated";

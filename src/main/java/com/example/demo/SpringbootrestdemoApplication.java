@@ -29,7 +29,6 @@ public class SpringbootrestdemoApplication {
 
 		// It is used to create a nurse's data in the database
 		Nurse nurse = new Nurse();
-		nurse.setId(3);
 		nurse.setAge(31);
 		nurse.setName("Rama");
 		nurse.setSalary(71000);

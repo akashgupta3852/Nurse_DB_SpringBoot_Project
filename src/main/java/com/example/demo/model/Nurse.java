@@ -16,7 +16,7 @@ import lombok.Setter;
 @ApiModel(description = "Details about the nurse")
 public class Nurse {
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-incrementation..hibernate will do this
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-incrementation..hibernate will do this
 	@ApiModelProperty(notes = "The unique id of the nurse")
 	private int id;
 	@ApiModelProperty(notes = "The nurse's name")
