@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+//import javax.persistence.NamedQuery;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -15,8 +15,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @ApiModel(description = "Details about the nurse")
-@NamedQuery(name = "Nurse.findByEmail", query = "select n from Nurse n where n.email = ?1")
-@NamedQuery(name = "Nurse.findByLastName", query = "select n from Nurse n where lower(n.lastName) = ?1")
+//@NamedQuery(name = "Nurse.findByEmail", query = "select n from Nurse n where n.email = ?1")
+//lastName (it should be same as member variable name, otherwise it will throw exception)
+//@NamedQuery(name = "Nurse.findByLastName", query = "select n from Nurse n where lower(n.lastName) = ?1")
 public class Nurse {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-incrementation..hibernate will do this
