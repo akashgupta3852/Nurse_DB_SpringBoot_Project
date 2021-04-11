@@ -25,6 +25,8 @@ public class Nurse {
 	private int age;
 	@ApiModelProperty(notes = "The nurse's salary")
 	private double salary;
+	@ApiModelProperty(notes = "The nurse's email")
+	private String email;
 
 	public void updateNurseData(int nurseId, Nurse nurse) {
 		this.id = nurseId;

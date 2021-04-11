@@ -41,6 +41,17 @@ public class NurseService {
 		return "Nurse name: " + nurseData.getName() + "'s data is not available in the database";
 	}
 
+	public String updateNurseEmail(int nurseId, String nurseEmail) {
+		Optional<Nurse> optional = this.getNurseDataById(nurseId);
+		if (optional.isPresent()) {
+			Nurse nurse = optional.get();
+			nurse.setEmail(nurseEmail);
+			nurseRepository.save(nurse);
+			return "Nurse name: " + nurse.getName() + "'s email has been updated";
+		}
+		return "Nurse id: " + nurseId + " is not available in the database";
+	}
+
 	public String deleteNurseData(int nurseId) {
 		if (!isPresent(nurseId))
 			return "Nurse with id: " + nurseId + " is not available in the database";

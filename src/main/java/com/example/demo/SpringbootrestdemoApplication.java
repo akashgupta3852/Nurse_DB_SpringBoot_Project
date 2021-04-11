@@ -32,6 +32,7 @@ public class SpringbootrestdemoApplication {
 		nurse.setAge(31);
 		nurse.setName("Rama");
 		nurse.setSalary(71000);
+		nurse.setEmail("rama@gmail.com");
 		NurseService nurseService = applicationContext.getBean(NurseService.class);
 		nurseService.addNurse(nurse);
 

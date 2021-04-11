@@ -52,6 +52,12 @@ public class NurseController {
 	public String updateNurseData(@PathVariable("nurseId") int nurseId, @RequestBody Nurse nurseData) {
 		return nurseService.updateNurseData(nurseId, nurseData);
 	}
+	
+	@PutMapping("/update/{nurseId}/{nurseEmail:.+}")
+	@ApiOperation(value = "Update the Nurse's email by Id", notes = "Provide an id to update the nurse's email in the nurse database", response = String.class)
+	public String updateNurseEmail(@PathVariable("nurseId") int nurseId, @PathVariable("nurseEmail") String nurseEmail) {
+		return nurseService.updateNurseEmail(nurseId, nurseEmail);
+	}
 
 	@DeleteMapping("/delete/{nurseId}")
 	@ApiOperation(value = "Delete the Nurse's data by Id", notes = "Provide an id to delete the specific nurse's details from the nurse database", response = String.class)
