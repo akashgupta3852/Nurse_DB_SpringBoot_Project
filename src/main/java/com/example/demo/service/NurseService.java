@@ -26,6 +26,16 @@ public class NurseService {
 		return nurseRepository.findById(nurseId);
 	}
 
+	public List<Nurse> getNursesByLastName(String lastName) {
+		lastName = lastName.toLowerCase();
+		return nurseRepository.findByLastName(lastName);
+	}
+
+	public List<Nurse> getNursesByEmail(String email) {
+		email = email.toLowerCase();
+		return nurseRepository.findByEmail(email);
+	}
+
 	public Nurse addNurse(Nurse nurse) {
 		return nurseRepository.save(nurse);
 	}
@@ -36,9 +46,11 @@ public class NurseService {
 		if (optional.isPresent()) {
 			nurse.updateNurseData(nurseId, nurseData);
 			nurseRepository.save(nurse);
-			return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName() + "'s data has been updated";
+			return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName()
+					+ "'s data has been updated";
 		}
-		return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName() + "'s data is not available in the database";
+		return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName()
+				+ "'s data is not available in the database";
 	}
 
 	public String updateNurseEmail(int nurseId, String nurseEmail) {

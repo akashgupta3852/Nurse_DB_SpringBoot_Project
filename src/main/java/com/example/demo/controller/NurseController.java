@@ -33,11 +33,23 @@ public class NurseController {
 	}
 
 	// @ApiParam is used to provide the extra notes to the Api parameter
-	@GetMapping("/list/{nurseId}")
+	@GetMapping("/list/id/{nurseId}")
 	@ApiOperation(value = "Find the Nurse's data by Id", notes = "Provide an id to look up specific nurse from the nurse database", response = Nurse.class)
 	public Optional<Nurse> getNurseDataById(
 			@ApiParam(value = "Id value for the nurse you need to retrieve", required = true) @PathVariable("nurseId") int nurseId) {
 		return nurseService.getNurseDataById(nurseId);
+	}
+
+	@GetMapping("/list/lastname/{lastName}")
+	@ApiOperation(value = "Find the list of nurses by LastName", notes = "null", response = Nurse.class)
+	public List<Nurse> getNursesByLastName(@PathVariable("lastName") String lastName) {
+		return nurseService.getNursesByLastName(lastName);
+	}
+
+	@GetMapping("/list/email/{email:.+}")
+	@ApiOperation(value = "Find the list of nurses by email", notes = "null", response = Nurse.class)
+	public List<Nurse> getNursesByEmail(@PathVariable("email") String email) {
+		return nurseService.getNursesByEmail(email);
 	}
 
 	@PostMapping("/create")
