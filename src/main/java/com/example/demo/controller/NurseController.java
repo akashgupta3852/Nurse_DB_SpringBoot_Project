@@ -44,7 +44,7 @@ public class NurseController {
 	@ApiOperation(value = "Add nurse data in database", notes = "Nurse data will be added in the database", response = String.class)
 	public String addNurse(@RequestBody Nurse nurse) {
 		nurseService.addNurse(nurse);
-		return "Nurse name: " + nurse.getName() + " has been added";
+		return "Nurse name: " + nurse.getFirstName() + " " + nurse.getLastName() + " has been added";
 	}
 
 	@PutMapping("/update/{nurseId}")
@@ -52,10 +52,11 @@ public class NurseController {
 	public String updateNurseData(@PathVariable("nurseId") int nurseId, @RequestBody Nurse nurseData) {
 		return nurseService.updateNurseData(nurseId, nurseData);
 	}
-	
+
 	@PutMapping("/update/{nurseId}/{nurseEmail:.+}")
 	@ApiOperation(value = "Update the Nurse's email by Id", notes = "Provide an id to update the nurse's email in the nurse database", response = String.class)
-	public String updateNurseEmail(@PathVariable("nurseId") int nurseId, @PathVariable("nurseEmail") String nurseEmail) {
+	public String updateNurseEmail(@PathVariable("nurseId") int nurseId,
+			@PathVariable("nurseEmail") String nurseEmail) {
 		return nurseService.updateNurseEmail(nurseId, nurseEmail);
 	}
 

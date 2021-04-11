@@ -19,8 +19,10 @@ public class Nurse {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-incrementation..hibernate will do this
 	@ApiModelProperty(notes = "The unique id of the nurse")
 	private int id;
-	@ApiModelProperty(notes = "The nurse's name")
-	private String name;
+	@ApiModelProperty(notes = "The nurse's firstName")
+	private String firstName;
+	@ApiModelProperty(notes = "The nurse's lastName")
+	private String lastName;
 	@ApiModelProperty(notes = "The nurse's age")
 	private int age;
 	@ApiModelProperty(notes = "The nurse's salary")
@@ -32,6 +34,7 @@ public class Nurse {
 		this.id = nurseId;
 		this.age = nurse.age;
 		this.salary = nurse.salary;
-		this.name = nurse.name;
+		this.firstName = nurse.firstName;
+		this.lastName = nurse.lastName;
 	}
 }

@@ -56,7 +56,8 @@ public class SpringbootrestdemoApplication implements CommandLineRunner {
 		// It is used to create a nurse's data in the database
 		Nurse nurse = new Nurse();
 		nurse.setAge(31);
-		nurse.setName("Rama");
+		nurse.setFirstName("Rama");
+		nurse.setLastName("Gupta");
 		nurse.setSalary(71000);
 		nurse.setEmail("rama@gmail.com");
 		nurseService.addNurse(nurse);

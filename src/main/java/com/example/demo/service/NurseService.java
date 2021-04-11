@@ -36,9 +36,9 @@ public class NurseService {
 		if (optional.isPresent()) {
 			nurse.updateNurseData(nurseId, nurseData);
 			nurseRepository.save(nurse);
-			return "Nurse name: " + nurseData.getName() + "'s data has been updated";
+			return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName() + "'s data has been updated";
 		}
-		return "Nurse name: " + nurseData.getName() + "'s data is not available in the database";
+		return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName() + "'s data is not available in the database";
 	}
 
 	public String updateNurseEmail(int nurseId, String nurseEmail) {
@@ -47,7 +47,7 @@ public class NurseService {
 			Nurse nurse = optional.get();
 			nurse.setEmail(nurseEmail);
 			nurseRepository.save(nurse);
-			return "Nurse name: " + nurse.getName() + "'s email has been updated";
+			return "Nurse name: " + nurse.getFirstName() + " " + nurse.getLastName() + "'s email has been updated";
 		}
 		return "Nurse id: " + nurseId + " is not available in the database";
 	}
