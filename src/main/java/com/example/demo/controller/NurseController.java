@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.NurseDTO;
 import com.example.demo.model.Nurse;
 import com.example.demo.service.NurseService;
 
@@ -54,15 +56,15 @@ public class NurseController {
 
 	@PostMapping("/create")
 	@ApiOperation(value = "Add nurse data in database", notes = "Nurse data will be added in the database", response = String.class)
-	public String addNurse(@RequestBody Nurse nurse) {
-		nurseService.addNurse(nurse);
-		return "Nurse name: " + nurse.getFirstName() + " " + nurse.getLastName() + " has been added";
+	public String addNurseToDb(@RequestBody NurseDTO nurseDTO) {
+		nurseService.addNurseToDB(nurseDTO);
+		return "Nurse name: " + nurseDTO.getFirstName() + " " + nurseDTO.getLastName() + " has been added";
 	}
 
 	@PutMapping("/update/{nurseId}")
 	@ApiOperation(value = "Update the Nurse's data by Id", notes = "Provide an id to update the nurse details in the nurse database", response = String.class)
-	public String updateNurseData(@PathVariable("nurseId") int nurseId, @RequestBody Nurse nurseData) {
-		return nurseService.updateNurseData(nurseId, nurseData);
+	public String updateNurseData(@PathVariable("nurseId") int nurseId, @RequestBody NurseDTO nurseDTO) {
+		return nurseService.updateNurseData(nurseId, nurseDTO);
 	}
 
 	@PutMapping("/update/{nurseId}/{nurseEmail:.+}")
@@ -89,6 +91,11 @@ public class NurseController {
 	@ApiOperation(value = "Find the pair of two number whose sum is the given number", notes = "This api will give all the pairs", response = String.class)
 	public String getPairNumbers(@PathVariable("sumNumber") int sumNumber, @RequestBody int[] arr) {
 		return nurseService.getPairNumbers(sumNumber, arr);
+	}
+
+	@PostMapping("/reqMessage")
+	public String isSizeVaild(@RequestBody String request) throws UnsupportedEncodingException {
+		return nurseService.isSizeVaild(request);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.NurseDTO;
 import com.example.demo.model.Nurse;
 //import com.example.demo.repository.NurseAddressRepository;
 import com.example.demo.repository.NurseRepository;
@@ -45,12 +47,13 @@ public class NurseService {
 		return nurseRepository.save(nurse);
 	}
 
-	public String updateNurseData(int nurseId, Nurse nurseData) {
-		Nurse nurse = new Nurse();
+	public String updateNurseData(int nurseId, NurseDTO nurseDTO) {
+		Nurse nurseData = new Nurse(nurseDTO);
+		Nurse nursetoBeUpdated = new Nurse();
 		Optional<Nurse> optional = this.getNurseDataById(nurseId);
 		if (optional.isPresent()) {
-			nurse.updateNurseData(nurseId, nurseData);
-			nurseRepository.save(nurse);
+			nursetoBeUpdated.updateNurseData(nurseId, nurseData);
+			nurseRepository.save(nursetoBeUpdated);
 			return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName()
 					+ "'s data has been updated";
 		}
@@ -130,6 +133,20 @@ public class NurseService {
 			str = str + "\n(" + mapEntry.getKey() + "," + mapEntry.getValue() + ")";
 		}
 		return str;
+	}
+
+	public void addNurseToDB(NurseDTO nurseDTO) {
+		Nurse nurse = new Nurse(nurseDTO);
+		nurseRepository.save(nurse);
+	}
+
+	public String isSizeVaild(String message) throws UnsupportedEncodingException {
+		byte[] bytes = message.getBytes("UTF-8");
+		int noOfBytes = bytes.length;
+		String str = "Number of bytes in the search request is " + noOfBytes + ", so the request is ";
+		if (noOfBytes <= (4 * 1024))
+			return str + "permissible. You can go to the next step";
+		return str + "not permissible";
 	}
 
 }

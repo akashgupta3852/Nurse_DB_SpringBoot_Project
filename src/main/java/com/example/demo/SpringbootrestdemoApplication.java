@@ -67,6 +67,7 @@ public class SpringbootrestdemoApplication implements CommandLineRunner {
 		nurse.setSalary(71000);
 		nurse.setEmail("rama@gmail.com");
 		nurse.setNurseAddress(nurseAddress);
+		nurse.setDepartments("OPD Nursing, ENT Nursing");
 		nurseService.addNurse(nurse);
 		System.out.println("The nurse's data has been added to db");
 	}
