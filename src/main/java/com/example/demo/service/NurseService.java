@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Nurse;
+//import com.example.demo.repository.NurseAddressRepository;
 import com.example.demo.repository.NurseRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class NurseService {
 
 	@Autowired
 	private NurseRepository nurseRepository;
+
+//	@Autowired
+//	private NurseAddressRepository nurseAddressRepository;
 
 	public List<Nurse> getNurses() {
 		return (List<Nurse>) nurseRepository.findAll();
@@ -37,6 +41,7 @@ public class NurseService {
 	}
 
 	public Nurse addNurse(Nurse nurse) {
+//		nurseAddressRepository.save(nurse.getNurseAddress());
 		return nurseRepository.save(nurse);
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.demo.model.NurseAddress;
 import com.example.demo.model.Nurse;
 import com.example.demo.service.NurseService;
 
@@ -54,12 +55,18 @@ public class SpringbootrestdemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// It is used to create a nurse's data in the database
+		NurseAddress nurseAddress = new NurseAddress();
+		nurseAddress.setAddress("Gudari Bazar");
+		nurseAddress.setCityName("Rasra");
+		nurseAddress.setStateName("U.P.");
+
 		Nurse nurse = new Nurse();
 		nurse.setAge(31);
 		nurse.setFirstName("Rama");
 		nurse.setLastName("Gupta");
 		nurse.setSalary(71000);
 		nurse.setEmail("rama@gmail.com");
+		nurse.setNurseAddress(nurseAddress);
 		nurseService.addNurse(nurse);
 		System.out.println("The nurse's data has been added to db");
 	}
