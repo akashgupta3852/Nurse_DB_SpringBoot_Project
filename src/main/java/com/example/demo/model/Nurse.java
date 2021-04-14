@@ -1,16 +1,15 @@
 package com.example.demo.model;
 
-import java.util.List;
-
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -25,24 +24,31 @@ import lombok.Setter;
 //lastName (it should be same as member variable name, otherwise it will throw exception)
 //@NamedQuery(name = "Nurse.findByLastName", query = "select n from Nurse n where lower(n.lastName) = ?1")
 @SecondaryTable(name = "address", pkJoinColumns = @PrimaryKeyJoinColumn(name = "nurse_id"))
+@Table(name="nurse_data")
 public class Nurse {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-incrementation..hibernate will do this
 	@ApiModelProperty(notes = "The unique id of the nurse")
+	@Column(name = "Nurse_Id")
 	private int id;
 
+	@Column(name = "Nurse_First_Name", length = 20, nullable=false)
 	@ApiModelProperty(notes = "The nurse's firstName")
 	private String firstName;
 
+	@Column(name = "Nurse_Last_Name", length = 20, nullable=false)
 	@ApiModelProperty(notes = "The nurse's lastName")
 	private String lastName;
 
+	@Column(name = "Nurse_Age", length = 2)
 	@ApiModelProperty(notes = "The nurse's age")
 	private int age;
 
+	@Column(name = "Nurse_Salary", length = 5)
 	@ApiModelProperty(notes = "The nurse's salary")
 	private double salary;
 
+	@Column(name = "Nurse_Email_Id", length = 40, nullable=false)
 	@ApiModelProperty(notes = "The nurse's email")
 	private String email;
 
