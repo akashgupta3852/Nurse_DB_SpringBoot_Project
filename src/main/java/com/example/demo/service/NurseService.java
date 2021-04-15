@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -127,6 +128,15 @@ public class NurseService {
 			str = str + "\n(" + mapEntry.getKey() + "," + mapEntry.getValue() + ")";
 		}
 		return str;
+	}
+
+	public String isSizeVaild(String message) throws UnsupportedEncodingException {
+		byte[] bytes = message.getBytes("UTF-8");
+		int noOfBytes = bytes.length;
+		String str = "Number of bytes in the search request message is " + noOfBytes + ", so the request is ";
+		if (noOfBytes <= (4 * 1024))
+			return str + "permissible. You can go to the next step.";
+		return str + "not permissible.";
 	}
 
 }

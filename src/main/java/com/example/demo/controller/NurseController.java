@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,6 +91,11 @@ public class NurseController {
 	@ApiOperation(value = "Find the pair of two number whose sum is the given number", notes = "This api will give all the pairs", response = String.class)
 	public String getPairNumbers(@PathVariable("sumNumber") int sumNumber, @RequestBody int[] arr) {
 		return nurseService.getPairNumbers(sumNumber, arr);
+	}
+
+	@PostMapping("/reqMessage")
+	public String isSizeVaild(@RequestBody String request) throws UnsupportedEncodingException {
+		return nurseService.isSizeVaild(request);
 	}
 
 }
