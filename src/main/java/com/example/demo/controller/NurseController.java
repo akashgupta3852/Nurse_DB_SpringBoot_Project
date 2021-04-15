@@ -98,4 +98,9 @@ public class NurseController {
 		return nurseService.isSizeVaild(request);
 	}
 
+	@GetMapping("/html")
+	public String get() {
+		return "index.jsp";
+	}
+
 }
