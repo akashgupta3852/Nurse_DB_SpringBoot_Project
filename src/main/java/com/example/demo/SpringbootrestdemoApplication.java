@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.demo.model.NurseAddress;
-import com.example.demo.model.Nurse;
+import com.example.demo.dto.NurseDTO;
 import com.example.demo.service.NurseService;
 
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -60,14 +62,18 @@ public class SpringbootrestdemoApplication implements CommandLineRunner {
 		nurseAddress.setCityName("Rasra");
 		nurseAddress.setStateName("U.P.");
 
-		Nurse nurse = new Nurse();
-		nurse.setAge(31);
-		nurse.setFirstName("Rama");
-		nurse.setLastName("Gupta");
-		nurse.setSalary(71000);
-		nurse.setEmail("rama@gmail.com");
-		nurse.setNurseAddress(nurseAddress);
-		nurseService.addNurse(nurse);
+		NurseDTO nurseDTO = new NurseDTO();
+		nurseDTO.setAge(31);
+		nurseDTO.setFirstName("Rama");
+		nurseDTO.setLastName("Gupta");
+		nurseDTO.setSalary(71000);
+		nurseDTO.setEmail("rama@gmail.com");
+		nurseDTO.setNurseAddress(nurseAddress);
+		List<String> depList = new ArrayList<>();
+		depList.add("OPD Nursing");
+		depList.add("ENT Nursing");
+		nurseDTO.setDepList(depList);
+		nurseService.addNurse(nurseDTO);
 		System.out.println("The nurse's data has been added to db");
 	}
 

@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.NurseDTO;
 import com.example.demo.model.Nurse;
 //import com.example.demo.repository.NurseAddressRepository;
 import com.example.demo.repository.NurseRepository;
@@ -18,9 +19,6 @@ public class NurseService {
 
 	@Autowired
 	private NurseRepository nurseRepository;
-
-//	@Autowired
-//	private NurseAddressRepository nurseAddressRepository;
 
 	public List<Nurse> getNurses() {
 		return (List<Nurse>) nurseRepository.findAll();
@@ -40,21 +38,20 @@ public class NurseService {
 		return nurseRepository.findByEmail(email);
 	}
 
-	public Nurse addNurse(Nurse nurse) {
-//		nurseAddressRepository.save(nurse.getNurseAddress());
+	public Nurse addNurse(NurseDTO nurseDTO) {
+		Nurse nurse = new Nurse(nurseDTO);
 		return nurseRepository.save(nurse);
 	}
 
-	public String updateNurseData(int nurseId, Nurse nurseData) {
+	public String updateNurseData(int nurseId, NurseDTO nurseDTO) {
 		Nurse nurse = new Nurse();
 		Optional<Nurse> optional = this.getNurseDataById(nurseId);
 		if (optional.isPresent()) {
-			nurse.updateNurseData(nurseId, nurseData);
+			nurse = nurse.updateNurseData(nurseId, nurseDTO);
 			nurseRepository.save(nurse);
-			return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName()
-					+ "'s data has been updated";
+			return "Nurse name: " + nurseDTO.getFirstName() + " " + nurseDTO.getLastName() + "'s data has been updated";
 		}
-		return "Nurse name: " + nurseData.getFirstName() + " " + nurseData.getLastName()
+		return "Nurse name: " + nurseDTO.getFirstName() + " " + nurseDTO.getLastName()
 				+ "'s data is not available in the database";
 	}
 
