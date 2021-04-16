@@ -66,7 +66,7 @@ public class SpringbootrestdemoApplication implements CommandLineRunner {
 		nurseDTO.setAge(31);
 		nurseDTO.setFirstName("Rama");
 		nurseDTO.setLastName("Gupta");
-		nurseDTO.setSalary(71000);
+		nurseDTO.setSalary(71000.0);
 		nurseDTO.setEmail("rama@gmail.com");
 		nurseDTO.setNurseAddress(nurseAddress);
 		List<String> depList = new ArrayList<>();

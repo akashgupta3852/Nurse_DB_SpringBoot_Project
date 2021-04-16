@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +58,7 @@ public class NurseController {
 
 	@PostMapping("/create")
 	@ApiOperation(value = "Add nurse data in database", notes = "Nurse data will be added in the database", response = String.class)
-	public String addNurse(@RequestBody NurseDTO nurseDTO) {
+	public String addNurse(@Valid @RequestBody NurseDTO nurseDTO) {
 		nurseService.addNurse(nurseDTO);
 		return "Nurse name: " + nurseDTO.getFirstName() + " " + nurseDTO.getLastName() + " has been added";
 	}
@@ -95,7 +97,9 @@ public class NurseController {
 
 	@PostMapping("/reqMessage")
 	public String isSizeVaild(@RequestBody String request) throws UnsupportedEncodingException {
-		return nurseService.isSizeVaild(request);
+		if (nurseService.isSizeVaild(request))
+			return "Number of bytes in the search request message is less than or equal to 4KB, so the request is permissible. You can go to the next step.";
+		return "Number of bytes in the search request message is more than 4KB, so the request is not permissible.";
 	}
 
 }
