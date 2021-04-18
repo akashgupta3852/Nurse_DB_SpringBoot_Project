@@ -1,6 +1,5 @@
 package com.example.demo.exception;
 
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class NurseExceptionHnadler {
+public class NurseExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
 		List<ObjectError> errorList = exception.getBindingResult().getAllErrors();
