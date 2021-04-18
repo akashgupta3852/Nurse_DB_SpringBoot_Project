@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import com.example.demo.dto.NurseDTO;
 
@@ -38,16 +39,23 @@ public class Nurse {
 	private int id;
 
 	@Column(name = "Nurse_First_Name", length = 20, nullable = false)
+	@Pattern(regexp = "[A-Z][a-zA-Z\\s]{2,}")
 	@ApiModelProperty(notes = "The nurse's firstName")
 	private String firstName;
 
 	@Column(name = "Nurse_Last_Name", length = 20, nullable = false)
+	@Pattern(regexp = "[A-Z][a-zA-Z\\s]{2,}")
 	@ApiModelProperty(notes = "The nurse's lastName")
 	private String lastName;
 
 	@Column(name = "Nurse_Age", length = 2)
 	@ApiModelProperty(notes = "The nurse's age")
 	private int age;
+
+	@Column(name = "Nurse_Gender", length = 6)
+	@Pattern(regexp = "Male|Female")
+	@ApiModelProperty(notes = "The nurse's gender")
+	private String gender;
 
 	@Column(name = "Nurse_Salary", length = 5)
 	@ApiModelProperty(notes = "The nurse's salary")
@@ -80,7 +88,8 @@ public class Nurse {
 		this.email = nurseDTO.getEmail();
 		this.nurseAddress = nurseDTO.getNurseAddress();
 		this.departments = this.covertDepListToString(nurseDTO.getDepList());
-		this.startDate=nurseDTO.startDate;
+		this.startDate = nurseDTO.getStartDate();
+		this.gender = nurseDTO.getGender();
 	}
 
 	public Nurse updateNurseData(int nurseId, NurseDTO nurseDTO) {
