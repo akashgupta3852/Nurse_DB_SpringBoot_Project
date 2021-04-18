@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -56,6 +57,10 @@ public class Nurse {
 	@ApiModelProperty(notes = "The nurse's email")
 	private String email;
 
+	@Column(name = "Nurse_Start_Date")
+	@ApiModelProperty(notes = "The nurse's start date")
+	private LocalDate startDate;
+
 	@ApiModelProperty(notes = "The nurse's address")
 	@Embedded
 	private NurseAddress nurseAddress;
@@ -75,6 +80,7 @@ public class Nurse {
 		this.email = nurseDTO.getEmail();
 		this.nurseAddress = nurseDTO.getNurseAddress();
 		this.departments = this.covertDepListToString(nurseDTO.getDepList());
+		this.startDate=nurseDTO.startDate;
 	}
 
 	public Nurse updateNurseData(int nurseId, NurseDTO nurseDTO) {

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -73,6 +74,8 @@ public class SpringbootrestdemoApplication implements CommandLineRunner {
 		depList.add("OPD Nursing");
 		depList.add("ENT Nursing");
 		nurseDTO.setDepList(depList);
+		LocalDate startDate = LocalDate.of(2021, 3, 11);
+		nurseDTO.setStartDate(startDate);
 		nurseService.addNurse(nurseDTO);
 		System.out.println("The nurse's data has been added to db");
 	}
