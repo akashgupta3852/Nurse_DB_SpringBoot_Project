@@ -2,6 +2,7 @@ package com.example.demo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -19,5 +20,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
+	}
+
+	@Override
+	public void configure(HttpSecurity security) throws Exception {
+		security.authorizeRequests().antMatchers("/", "/static/js", "/static/css").permitAll()
+				.antMatchers("/nurses/list/**").hasAnyRole("USER", "ADMIN").antMatchers("/**").hasRole("ADMIN").and()
+				.formLogin();
 	}
 }
