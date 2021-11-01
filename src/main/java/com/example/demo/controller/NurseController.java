@@ -1,12 +1,14 @@
 package com.example.demo.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -100,6 +102,12 @@ public class NurseController {
 		if (nurseService.isSizeVaild(request))
 			return "Number of bytes in the search request message is less than or equal to 4KB, so the request is permissible. You can go to the next step.";
 		return "Number of bytes in the search request message is more than 4KB, so the request is not permissible.";
+	}
+
+	@GetMapping("/clear/cache")
+	@CacheEvict("nurseService")
+	public String clearCache() {
+		return "Cleared the cache successfully";
 	}
 
 }

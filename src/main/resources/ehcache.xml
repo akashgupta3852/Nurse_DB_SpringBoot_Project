@@ -1,0 +1,20 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         updateCheck="true"
+         monitoring="autodetect"
+         dynamicConfig="true">
+	<diskStore path="java.io.tmpdir" />
+	<Cache 
+		name="nurseService" 
+		maxEntriesLocalHeap="10000"
+		maxEntriesLocalDisk="100" 
+		eternal="false" 
+		diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="120" 
+		timeToLiveSeconds="120"
+		diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU" 
+		transactionalMode="off">
+	<persistence strategy="localTempSwap" />
+	</Cache>
+
+</ehcache>

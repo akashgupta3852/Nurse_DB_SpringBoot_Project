@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,7 +32,7 @@ import lombok.Setter;
 //@NamedQuery(name = "Nurse.findByLastName", query = "select n from Nurse n where lower(n.lastName) = ?1")
 @SecondaryTable(name = "address", pkJoinColumns = @PrimaryKeyJoinColumn(name = "nurse_id"))
 @Table(name = "nurse_data")
-public class Nurse {
+public class Nurse implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-incrementation..hibernate will do this
 	@ApiModelProperty(notes = "The unique id of the nurse")

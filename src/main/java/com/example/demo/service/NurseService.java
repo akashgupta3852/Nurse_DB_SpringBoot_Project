@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.NurseDTO;
@@ -25,7 +27,9 @@ public class NurseService {
 		return (List<Nurse>) nurseRepository.findAll();
 	}
 
+	@Cacheable(value = "nurseService", key = "#p0")
 	public Optional<Nurse> getNurseDataById(int nurseId) {
+		System.out.println("The details of the nurse whose id = " + nurseId + " is extracted from the database.");
 		return nurseRepository.findById(nurseId);
 	}
 

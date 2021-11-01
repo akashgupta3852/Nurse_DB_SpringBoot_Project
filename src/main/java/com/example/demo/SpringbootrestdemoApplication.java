@@ -8,10 +8,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.model.NurseAddress;
 import com.example.demo.dto.NurseDTO;
@@ -26,15 +29,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
+@PropertySource("classpath:application.properties")
 public class SpringbootrestdemoApplication implements CommandLineRunner {
 	private static Logger logger = LoggerFactory.getLogger(SpringbootrestdemoApplication.class);
 
+	@Value("${number}")
+	private int num;
+	
 	@Autowired
 	private NurseService nurseService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootrestdemoApplication.class, args);
-
 		logger.info("Message logged at info level");
 		logger.error("Message logged at error level");
 		logger.debug("Message logged at debug level");
@@ -57,6 +63,9 @@ public class SpringbootrestdemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		System.out.println("the number is " +  num);
+		
 		// It is used to create a nurse's data in the database
 		NurseAddress nurseAddress = new NurseAddress();
 		nurseAddress.setAddress("Gudari Bazar");

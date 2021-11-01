@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -10,7 +12,7 @@ import lombok.Setter;
 @Embeddable
 @Getter
 @Setter
-public class NurseAddress {
+public class NurseAddress implements Serializable {
 	@Column(name = "Nurse_Address", length = 20)
 	@ApiModelProperty(notes = "The nurse's address")
 	private String address;
